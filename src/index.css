@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom glow animations and utilities */
+.glow-blue {
+  box-shadow: 0 0 60px -10px rgba(59, 130, 246, 0.25);
+}
+
+.text-glow {
+  text-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+/* Backdrop glow effects and noise */
+.radial-glow {
+  background: radial-gradient(circle at center, rgba(29, 78, 216, 0.12) 0%, rgba(3, 7, 18, 0) 70%);
+}
+
+.radial-glow-strong {
+  background: radial-gradient(circle at center, rgba(29, 78, 216, 0.22) 0%, rgba(3, 7, 18, 0) 55%);
+}
+
+.radial-glow-cyan {
+  background: radial-gradient(circle at center, rgba(6, 182, 212, 0.08) 0%, rgba(3, 7, 18, 0) 65%);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #030712; /* Extreme dark */
+  color: #f3f4f6; /* Off-white */
+}
+
+/* Custom focus and scroll elements */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+::-webkit-scrollbar-thumb {
+  background: #111827;
+  border-radius: 9999px;
+  border: 1px solid #1f2937;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+/* Utility classes for premium alignment */
+.rtl-grid {
+  direction: rtl;
+}
+
+.ltr-grid {
+  direction: ltr;
+}
+
