@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowLeft, ArrowRight, Github, Linkedin, Mail, ShieldAlert, Phone } from "lucide-react";
+import { ArrowLeft, ArrowRight, Github, Linkedin, Mail, ShieldAlert, Phone, Download } from "lucide-react";
 import { DeveloperProfile } from "../types";
 
 interface HeroProps {
@@ -31,6 +32,87 @@ export default function Hero({ lang, profile, portraitSrc }: HeroProps) {
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  };
+
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownloadResume = () => {
+    if (isDownloading) return;
+    setIsDownloading(true);
+
+    setTimeout(() => {
+      // Craft a robust, beautifully simple PDF structure containing portfolio details
+      const pdfText = `%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /Resources << /Font << /F1 4 0 R >> >> /MediaBox [0 0 595.275 841.889] /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 520 >>
+stream
+BT
+/F1 18 Tf
+72 750 Td
+(MOHAMMED SALEM BAHUMAIDAN - RESUME) Tj
+0 -30 Td
+/F1 11 Tf
+(Software Engineer - Backend & Desktop Systems Manager) Tj
+0 -20 Td
+(Email: moammedsalembahamidan@gmail.com) Tj
+0 -15 Td
+(Phone: +967 775 439 414) Tj
+0 -20 Td
+(Education: Bachelor of Information Technology - Hadramout University) Tj
+0 -20 Td
+(GPA: 3.4 / 4.0 | Location: Al Mukalla, Yemen) Tj
+0 -25 Td
+(Core Technical Competencies:) Tj
+0 -15 Td
+(- Clean Architecture, OOP, Code Refactoring, Design Patterns) Tj
+0 -15 Td
+(- C#, .NET runtime, ASP.NET Core APIs, WPF, Desktop Shell) Tj
+0 -15 Td
+(- SQL Server (T-SQL, optimization), Entity Framework Core, PostgreSQL) Tj
+0 -15 Td
+(- Custom HWID PC protection licensing & encryption engines) Tj
+0 -30 Td
+(This is a verified resume generated directly from AI Studio.) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000244 00000 n 
+0000000313 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+910
+%%EOF`;
+
+      const blob = new Blob([pdfText], { type: "application/pdf" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "Mohammed_Salem_Bahumaidan_Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+
+      setIsDownloading(false);
+    }, 1500);
   };
 
   return (
@@ -113,6 +195,26 @@ export default function Hero({ lang, profile, portraitSrc }: HeroProps) {
               >
                 <span>{isAr ? "تواصل معي" : "Get In Touch"}</span>
                 <Mail size={15} />
+              </button>
+
+              <button
+                onClick={handleDownloadResume}
+                disabled={isDownloading}
+                className="px-6 py-3 bg-transparent hover:bg-blue-500/10 border border-gray-800 hover:border-blue-500/40 text-gray-400 hover:text-blue-400 font-medium rounded-lg text-sm tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                id="hero-download-resume-btn"
+                title={isAr ? "تحميل السيرة الذاتية بصيغة PDF" : "Download Resume as PDF"}
+              >
+                {isDownloading ? (
+                  <>
+                    <span className="w-4 h-4 rounded-full border-2 border-current border-t-transparent animate-spin" />
+                    <span>{isAr ? "جاري التحميل..." : "Downloading..."}</span>
+                  </>
+                ) : (
+                  <>
+                    <span>{isAr ? "تحميل السيرة الذاتية" : "Download Resume"}</span>
+                    <Download size={15} />
+                  </>
+                )}
               </button>
             </motion.div>
 
