@@ -10,7 +10,7 @@ export const developerProfile: DeveloperProfile = {
   titleAr: "مهندس برمجيات | مطور أنظمة خلفية وتطبيقات سطح المكتب",
   location: "اليمن، المكلا",
   locationAr: "اليمن، المكلا",
-  email: "moammedsalembahamidan@gmail.com",
+  email: "mohamedsalem230009@gmail.com",
   phone: "+967 775 439 414",
   phoneAr: "٧٧٥٤٣٩٤١٤ (٩٦٧+)",
   github: "https://github.com/Bahamidan-backend",
@@ -60,7 +60,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Clean Architecture", level: 88 },
       { name: "Async / Await Coding", level: 95 },
       { name: "Object-Oriented Programming (OOP)", level: 95 },
-      { name: "SOLID Principles", level: 92 }
+      { name: "SOLID Principles", level: 30 }
     ]
   },
   {
@@ -69,7 +69,7 @@ export const skillCategories: SkillCategory[] = [
     titleAr: "قواعد البيانات",
     skills: [
       { name: "SQL Server", level: 90 },
-      { name: "PostgreSQL", level: 85 },
+      { name: "PostgreSQL", level: 30 },
       { name: "SQLite", level: 92 }
     ]
   },

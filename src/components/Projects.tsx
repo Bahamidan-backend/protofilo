@@ -26,10 +26,28 @@ import {
   Building
 } from "lucide-react";
 
+// Import all images directly to let Vite bundle and hash them correctly for the published build
+import imgNexCashMain from "../assets/images/1783614452740-019f47b4-9949-71f2-af9d-147ee57a17d2.jpeg";
+import imgNexCashBilling from "../assets/images/لقطة الشاشة 2026-06-25 111800.jpg";
+import imgNexCashStock from "../assets/images/لقطة الشاشة 2026-07-09 193454.jpg";
+import imgNexCashAccounts from "../assets/images/لقطة الشاشة 2026-07-09 193510.jpg";
+import imgNexCashVault from "../assets/images/لقطة الشاشة 2026-07-09 193526.jpg";
+
+import imgHotelMain from "../assets/images/project_hotel_1779654930605.png";
+import imgHotelRoom from "../assets/images/SharedScreenshotroom.jpg";
+import imgHotelReservation from "../assets/images/SharedScreenshotrevsstion.jpg";
+import imgHotelAddReservation from "../assets/images/SharedScreenshotaddrevstion.jpg";
+import imgHotelEmployee from "../assets/images/SharedScreenshotemployee.jpg";
+import imgHotelAddEmployee from "../assets/images/SharedScreenshotaddemployee.jpg";
+import imgHotelAccount from "../assets/images/SharedScreenshotaccuont.jpg";
+import imgHotelAnalytics from "../assets/images/SharedScreenshot2.jpg";
+import imgHotelOperations from "../assets/images/SharedScreenshot3.jpg";
+import imgHotelAbout from "../assets/images/SharedScreenshotabout.jpg";
+
 // Project static main image fallback (used for non-interactive views and other projects)
 const PROJECT_IMAGES: Record<string, string> = {
-  nexcash: "/src/assets/images/project_nexcash_1779654911972.png",
-  hotel: "/src/assets/images/project_hotel_1779654930605.png"
+  nexcash: imgNexCashMain,
+  "hotel-management": imgHotelMain
 };
 
 // =========================================================================
@@ -42,22 +60,34 @@ interface NexCashCarouselProps {
 function NexCashCarousel({ isAr }: NexCashCarouselProps) {
   const slides = [
     {
-      id: "dashboard",
-      title: isAr ? "لوحة التحكم الرئيسية (Dashboard)" : "Admin Dashboard Hub",
-      desc: isAr ? "شاشة لوحة التحكم الإدارية، تعرض تفريعات حيوية لأقسام النظام مثل إدارة المنتجات، الخزانة، المبيعات والخصومات لتسهيل العمليات السريعة." : "Executive administration terminal detailing linked departments, POS cash flow, total store inventory, and system configurations with flat touch tiles.",
-      path: "/src/assets/images/nexcash_dashboard_2_1779697019519.png"
+      id: "main-dashboard",
+      title: isAr ? "لوحة التحكم الرئيسية والمبيعات" : "Interactive POS Sales Hub",
+      desc: isAr ? "واجهة المستخدم الرئيسية لإدخال المبيعات، ومراقبة حركة الأموال اليومية، وإدارة المنتجات بسرعة ومرونة فائقة." : "The core workspace for executing direct sales orders, monitoring day-to-day transaction streams, and managing retail operations dynamically.",
+      path: imgNexCashMain
     },
     {
-      id: "inventory",
-      title: isAr ? "تهيئة وحوكمة المخازن (Warehouse Mgt)" : "Stock & Warehouse Console",
-      desc: isAr ? "شاشة إدارة ومتابعة المخازن الإقليمية المبردة والمجففة (ثلاجة لحم، ثلاجة، المواد الجافة) وتتبع تفاصيل المدراء، سعة التخزين وحصيلتها الإجمالية." : "Multi-zone cold and dry warehouse storage monitoring grid, detailing operational status, manager profiles, location tracking, and bulk-to-unit stock conversion.",
-      path: "/src/assets/images/nexcash_inventory_1_1779697002585.png"
+      id: "pos-billing",
+      title: isAr ? "شاشة الفواتير والمبيعات السريعة" : "Dynamic Invoice Billing Terminal",
+      desc: isAr ? "شاشة كاشير سريعة مصممة لإصدار وتجهيز الفواتير وإجراء عمليات الإرجاع بسلاسة فائقة بمزامنة آلية لقواعد البيانات." : "High-speed cashier view optimized for compiling instant customer invoices, tracking order changes, and pushing real-time relational SQL logs.",
+      path: imgNexCashBilling
     },
     {
-      id: "security",
-      title: isAr ? "خوارزميات تشفير بصمة العتاد HWID" : "WPF System Protection Gateway",
-      desc: isAr ? "شاشة تفصيل مفتاح النظام التشفيري والترخيص الحصري المعتمد على بصمة عتاد الجهاز (HWID Core Lock) وتوقيعات HMAC-SHA256 لمنع قرصنة البيانات." : "Comprehensive cryptographic module sealing operational binaries on the local host, implementing tamper defenses, HWID signature locks, and encrypted payload routing.",
-      path: "/src/assets/images/project_nexcash_1779654911972.png"
+      id: "stock-ledgers",
+      title: isAr ? "إدارة وتصنيف حسابات المخازن" : "Warehouse Stock & Category Ledger",
+      desc: isAr ? "نظام حوكمة المخزون وتصنيف الأقسام وتخزين البيانات بشكل منظم ومرن مع مراعاة دقة خوارزميات التجزئة والفرز." : "Enterprise stock control engine built to classify inventory categories, monitor active item caps, and synchronize stock values seamlessly.",
+      path: imgNexCashStock
+    },
+    {
+      id: "accounts-grid",
+      title: isAr ? "شاشة المبيعات والحسابات الشاملة" : "Sales Records & Billing Database",
+      desc: isAr ? "جدول بيانات مركزي يسرد سجلات عمليات البيع السابقة بالتفصيل ويوفر خيارات تصفية متقدمة لطباعة التقارير الإدارية." : "Comprehensive operational datagrid tracking historical checkout sessions, total revenue per shift, and supporting advanced search filters.",
+      path: imgNexCashAccounts
+    },
+    {
+      id: "vault-cashier",
+      title: isAr ? "شاشة الخزانة والحركة المالية" : "Cashier Vault & Financial Logs",
+      desc: isAr ? "واجهة دقيقة لمراقبة حركة الصندوق المالي والخزينة، ومستحقات العملاء والموردين بدقة حسابية متكاملة." : "Audit module displaying instant register balances, cash drawer drops, client accounts receivable, and clean financial reports.",
+      path: imgNexCashVault
     }
   ];
 
@@ -140,6 +170,149 @@ function NexCashCarousel({ isAr }: NexCashCarouselProps) {
 }
 
 // =========================================================================
+// 2. HOTEL MANAGEMENT HIGH-FIDELITY IMAGE CAROUSEL COMPONENT
+// =========================================================================
+interface HotelManagementCarouselProps {
+  isAr: boolean;
+}
+
+function HotelManagementCarousel({ isAr }: HotelManagementCarouselProps) {
+  const slides = [
+    {
+      id: "room",
+      title: isAr ? "لوحة حالة ومصفوفة الغرف" : "Room Matrix & Occupancy Status",
+      desc: isAr ? "مخطط تفصيلي يستعرض جميع غرف جناح الفندق وحالة إشغالها (شواغر، حجوزات نشطة، قيد الصيانة والتنظيف) مع إمكانية التعيين السريع بمزامنة آلية." : "Visual operational board detailing real-time room occupancy (vacant rooms, active check-ins, maintenance/cleaning phases) driven by direct ADO.NET SQL database connections.",
+      path: imgHotelRoom
+    },
+    {
+      id: "revsstion",
+      title: isAr ? "جدول سجل نزلاء وحجوزات الفندق" : "Bookings & Guests Database Ledger",
+      desc: isAr ? "سجل قاعدة بيانات مركزي يعرض بيانات الحجوزات ونزلاء الفندق بالتفصيل، يدعم الفلترة المتقدمة والبحث اللحظي السريع بالاسم أو رقم الهوية الوطنية." : "High-performance data grid views displaying comprehensive customer check-in registers, automated billing timestamps, room numbers, and custom search capabilities.",
+      path: imgHotelReservation
+    },
+    {
+      id: "addrevstion",
+      title: isAr ? "واجهة تسجيل حجز وإدخال نزيل جديد" : "New Booking & Guest Registration",
+      desc: isAr ? "نافذة مخصصة لموظف الاستقبال لربط النزيل الجديد بالغرفة المختارة، وتحديد تكلفة الإقامة الإضافية، الخدمات المشغولة، وحساب كشف الحساب آلياً." : "Dedicated front-desk form to capture guest details, room selection, rates duration, extra amenities cost, and enforce database safe relational integrity.",
+      path: imgHotelAddReservation
+    },
+    {
+      id: "employee",
+      title: isAr ? "إدارة شؤون الموظفين والصلاحيات" : "Employee & HR Management Matrix",
+      desc: isAr ? "محرك متكامل لتسجيل موظفي الفندق وأدوارهم الوظيفية ومستويات الترخيص والصلاحيات وعمليات الدخول لتأمين حركة البيانات الحساسة." : "Personnel manager displaying full staff directory profiles, monthly salary grades, active shifts, and restricted database entry access authorization nodes.",
+      path: imgHotelEmployee
+    },
+    {
+      id: "addemployee",
+      title: isAr ? "شاشة تعيين الموظفين الجدد وصلاحياتهم" : "New Staff Enrollment Console",
+      desc: isAr ? "نافذة سهلة ومنظمة تتيح لمدير الموارد البشرية إضافة وتشفير حساب موظف جديد وتحديد مستوى صلاحيته وكلمة المرور المشفرة." : "Sleek C# Windows Forms container to safely register incoming employee records, credentials, base pay, and assign secure system privilege roles.",
+      path: imgHotelAddEmployee
+    },
+    {
+      id: "accuont",
+      title: isAr ? "السجلات المالية وبوابة كشف الحساب" : "Financial Statements & Ledger Registry",
+      desc: isAr ? "دفتر مالي مركزي يوضح المدفوعات والضرائب والمستحقات والودائع المالية بطريقة منظمة ودقيقة مع خيار الاستخراج والطباعة الفورية للفواتير." : "Aesthetic bookkeeping panel auditing customer balances, advance reserves deposit transactions, service receipts, and printing clean financial statements.",
+      path: imgHotelAccount
+    },
+    {
+      id: "analytics",
+      title: isAr ? "شاشة التحليلات ومؤشرات الأداء" : "Hotel Operations Analytics Module",
+      desc: isAr ? "لوحة معلوماتية مفصلة للغاية تستعرض رسوم بيانية ومؤشرات هامة لأداء الفندق التشغيلي، الدخل المالي، ومعدل الإشغال الشهري." : "Live business intelligence and reports, showing graphical metrics for monthly revenue flow, room demand averages, and receptionist performance logs.",
+      path: imgHotelAnalytics
+    },
+    {
+      id: "operations",
+      title: isAr ? "لوحة الإعدادات والتحويرات الإدارية" : "System Control Rules & Settings",
+      desc: isAr ? "بوابة لوحة التحكم الرئيسية للفندق حيث يمكن تفضيل أسعار ليلية جديدة وتكويد الغرف المتاحة وتغيير اتصال قاعدة البيانات والنسخ الاحتياطي." : "Back-end database and settings module enabling seasons package prices adjustments, custom room numbers creation, database test checks, and server parameters.",
+      path: imgHotelOperations
+    },
+    {
+      id: "about",
+      title: isAr ? "شاشة عن البرنامج ومعلومات المطور" : "Software Metadata & Author Information",
+      desc: isAr ? "شاشة توثيقية ترخص ملكية حقوق البرمجيات، وتسرد بيانات البيئة ومحركات التشغيل ومعلومات الاتصال والمطور البرمجي." : "Brand identity and system specifications viewport containing copyright registries, build version, SQL Connection strings overview, and developer profile references.",
+      path: imgHotelAbout
+    }
+  ];
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const prevSlide = () => {
+    setActiveIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setActiveIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="relative flex flex-col w-full h-full bg-gray-950/40 border border-gray-900 rounded-2xl overflow-hidden p-3.5">
+      {/* Top Banner Indicator */}
+      <div className={`flex justify-between items-center px-1 pb-2.5 border-b border-gray-900/40 mb-3 ${isAr ? "flex-row-reverse" : "flex-row"}`}>
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
+          <span className="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-wider text-ellipsis overflow-hidden whitespace-nowrap max-w-[200px]">
+            {slides[activeIndex].title}
+          </span>
+        </div>
+        <span className="text-[10px] font-mono text-gray-500 font-bold shrink-0">
+          {activeIndex + 1} / {slides.length}
+        </span>
+      </div>
+
+      {/* Main Image Viewport with Slide Transition */}
+      <div className="relative group/slide overflow-hidden rounded-xl border border-gray-900 bg-gray-950/90 my-auto">
+        <div className="absolute top-2.5 right-2.5 z-10 bg-gray-950/80 text-purple-400 border border-purple-500/20 px-2 py-0.5 text-[8px] font-mono uppercase rounded tracking-widest animate-pulse">
+          {isAr ? "شاشة نظام حقيقية" : "REAL SYSTEM WINDOW"}
+        </div>
+        
+        {/* Navigation Buttons */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-2.5 top-1/2 -translate-y-1/2 z-10 p-2 bg-gray-950/80 hover:bg-purple-600 hover:text-white text-gray-400 rounded-full transition-all opacity-0 group-hover/slide:opacity-100 cursor-pointer border border-gray-950"
+          title={isAr ? "صورة سابقة" : "Previous Image"}
+        >
+          <ChevronLeft size={15} />
+        </button>
+
+        <img
+          src={slides[activeIndex].path}
+          alt={slides[activeIndex].title}
+          className="w-full h-auto max-h-[220px] sm:max-h-[300px] object-cover duration-500 scale-100 hover:scale-103 shadow-md border-0 mx-auto"
+          referrerPolicy="no-referrer"
+        />
+
+        <button
+          onClick={nextSlide}
+          className="absolute right-2.5 top-1/2 -translate-y-1/2 z-10 p-2 bg-gray-950/80 hover:bg-purple-600 hover:text-white text-gray-400 rounded-full transition-all opacity-0 group-hover/slide:opacity-100 cursor-pointer border border-gray-950"
+          title={isAr ? "صورة تالية" : "Next Image"}
+        >
+          <ChevronRight size={15} />
+        </button>
+      </div>
+
+      {/* Description below slide */}
+      <div className={`mt-3.5 px-1 min-h-[46px] ${isAr ? "text-right" : "text-left"}`}>
+        <p className="text-[11px] text-gray-400 leading-normal font-sans">
+          {slides[activeIndex].desc}
+        </p>
+      </div>
+
+      {/* Slide Navigation Pagination Dots */}
+      <div className="flex justify-center flex-wrap gap-1.5 pt-3 border-t border-gray-900/30 mt-3">
+        {slides.map((slide, idx) => (
+          <button
+            key={slide.id}
+            onClick={() => setActiveIndex(idx)}
+            className={`h-1 rounded-full transition-all duration-300 ${activeIndex === idx ? "w-5 bg-purple-500" : "w-1 bg-gray-800 hover:bg-gray-700"}`}
+            title={slide.title}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
 // 3. MAIN PROJECTS SECTION CONTAINER COMPONENT
 // =========================================================================
 interface ProjectsProps {
@@ -208,9 +381,11 @@ export default function Projects({ lang }: ProjectsProps) {
                       {/* Interactive subtle blue glow frame */}
                       <div className="absolute -inset-2 bg-blue-600/5 rounded-2xl opacity-0 hover:opacity-100 blur-xl transition-all duration-300 pointer-events-none" />
                       
-                      {/* Render Interactive Slides Carousel for NexCash, otherwise standard static fallback */}
+                      {/* Render Interactive Slides Carousel for NexCash & Hotel Management, otherwise standard static fallback */}
                       {proj.id === "nexcash" ? (
                         <NexCashCarousel isAr={isAr} />
+                      ) : proj.id === "hotel-management" ? (
+                        <HotelManagementCarousel isAr={isAr} />
                       ) : (
                         <div className="relative group overflow-hidden rounded-xl border border-gray-800">
                           <img
@@ -239,7 +414,7 @@ export default function Projects({ lang }: ProjectsProps) {
                         <span className="px-3 py-1 bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xxs font-mono tracking-wider uppercase rounded-full">
                           {isAr ? "سطح مكتب" : "Windows Desktop"}
                         </span>
-                        {proj.id === "nexcash" && (
+                        {(proj.id === "nexcash" || proj.id === "hotel-management") && (
                           <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-mono tracking-wider font-bold rounded-full">
                             {isAr ? "نظام سطح مكتب حقيقي" : "REAL WINDOWS SYSTEM"}
                           </span>

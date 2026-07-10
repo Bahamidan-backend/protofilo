@@ -288,7 +288,8 @@ startxref
                 <img
                   src={portraitSrc}
                   alt={isAr ? profile.nameAr : profile.name}
-                  className="w-full h-full object-cover grayscale brightness-105 hover:grayscale-0 transition-all duration-700 scale-100 hover:scale-105"
+                  style={{ objectPosition: "center 15%" }}
+                  className="w-full h-full object-cover grayscale brightness-105 hover:grayscale-0 transition-all duration-700 scale-120 hover:scale-125"
                   referrerPolicy="no-referrer"
                 />
               </div>

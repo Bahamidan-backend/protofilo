@@ -13,7 +13,7 @@ import Contact from "./components/Contact";
 import { developerProfile } from "./data";
 
 // Direct imports of generated assets for rock-solid Vite bundler resolve
-import portraitImg from "./assets/images/developer_portrait_closeup_1779656125836.png";
+import portraitImg from "./assets/images/gemini-2.5-flash-image-preview (nano-banana)_a_خلفيها_خليها_في_استد (1).png";
 
 export default function App() {
   // Default to Arabic ('ar') as requested, with support for seamless English toggle
@@ -130,9 +130,17 @@ export default function App() {
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, y: 30, scale: 0.5 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 30, scale: 0.5 }}
+            transition={{
+              type: "spring",
+              stiffness: 350,
+              damping: 15,
+              mass: 1
+            }}
+            whileHover={{ scale: 1.15, transition: { duration: 0.2 } }}
+            whileTap={{ scale: 0.95 }}
             onClick={scrollToTop}
             className="fixed bottom-6 right-6 z-50 p-3 bg-blue-600 hover:bg-blue-500 border border-blue-500/20 text-white rounded-full shadow-2xl shadow-blue-500/35 cursor-pointer transition-all duration-300"
             id="scroll-to-top-btn"

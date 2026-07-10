@@ -24,6 +24,7 @@ export default function Contact({ lang }: ContactProps) {
   const [isSent, setIsSent] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
 
   // Copy email logic
   const copyEmailToClipboard = () => {
@@ -39,22 +40,35 @@ export default function Contact({ lang }: ContactProps) {
     setTimeout(() => setCopiedPhone(false), 2000);
   };
 
-  // Form submit simulator
+  // Form submit handler with direct WhatsApp integration
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setIsSubmitting(true);
+
+    // Format the WhatsApp message beautifully
+    const waText = isAr
+      ? `*رسالة جديدة من المحفظة الرقمية لـ م/ محمد سالم*\n\n👤 *الاسم:* ${formData.name}\n📧 *البريد الإلكتروني:* ${formData.email}\n📌 *الموضوع:* ${formData.subject || "غير محدد"}\n\n💬 *الرسالة:*\n${formData.message}`
+      : `*New Contact Message from Portfolio*\n\n👤 *Name:* ${formData.name}\n📧 *Email:* ${formData.email}\n📌 *Subject:* ${formData.subject || "N/A"}\n\n💬 *Message:*\n${formData.message}`;
+
+    const waUrl = `https://wa.me/967775439414?text=${encodeURIComponent(waText)}`;
+    setWhatsappUrl(waUrl);
     
     // Simulate API delay
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSent(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
       
-      // Auto-reset success message after 5 seconds
-      setTimeout(() => setIsSent(false), 6000);
-    }, 1500);
+      // Attempt to launch WhatsApp immediately
+      try {
+        window.open(waUrl, "_blank");
+      } catch (err) {
+        console.error("Popup blocked:", err);
+      }
+
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    }, 1200);
   };
 
   return (
@@ -313,21 +327,34 @@ export default function Contact({ lang }: ContactProps) {
                     initial={{ scale: 0.95, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.95, opacity: 0 }}
-                    className="py-12 px-4 flex flex-col items-center justify-center text-center space-y-4"
+                    className="py-12 px-4 flex flex-col items-center justify-center text-center space-y-6"
                   >
-                    <div className="p-4 bg-green-500/10 border border-green-500/20 text-green-400 rounded-full animate-bounce">
+                    <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-full animate-bounce">
                       <MessageSquare size={32} />
                     </div>
                     <div className="space-y-2">
                       <h4 className="text-lg font-bold text-white font-sans">
-                        {isAr ? "تم إرسال رسالتك بنجاح!" : "Transmission Complete!"}
+                        {isAr ? "تم إرسال رسالتك وتجهيزها!" : "Message Processed Successfully!"}
                       </h4>
                       <p className="text-gray-300 text-xs sm:text-sm max-w-md leading-relaxed">
                         {isAr 
-                          ? "شكراً لتواصلك يا محمد سالم باحميدان، تم تسجيل تفاصيل الرسالة بنجاح وسأقوم بالرد عليك عبر بريدك الإلكتروني خلال 24 ساعة."
-                          : "Your message details have logged safely to my mailbox. I will inspect the specs and reach back within 24 hours."}
+                          ? "تم توجيه الرسالة ليتم إرسالها إليك على الواتساب مباشرة. إذا لم تفتح نافذة المحادثة، اضغط على الزر الأخضر أدناه لإرسالها فوراً."
+                          : "The message is prepared for direct delivery via WhatsApp. If the chat didn't launch automatically, please click the button below to send it."}
                       </p>
                     </div>
+
+                    {/* Direct Action WhatsApp button */}
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl tracking-wide transition-all shadow-lg hover:shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer w-full max-w-xs"
+                      id="direct-whatsapp-send-btn"
+                    >
+                      <MessageSquare size={14} />
+                      <span>{isAr ? "إرسال مباشر عبر واتساب" : "Send Directly via WhatsApp"}</span>
+                    </a>
+
                     <button
                       onClick={() => setIsSent(false)}
                       className="px-4 py-2 bg-gray-950 hover:bg-gray-900 border border-gray-800 text-xs text-gray-400 hover:text-white rounded-xl transition-all cursor-pointer"
