@@ -92,6 +92,18 @@ export const skillCategories: SkillCategory[] = [
       { name: "Visual Studio", level: 95 },
       { name: "Postman API Testing", level: 88 }
     ]
+  },
+  {
+    id: "professional",
+    title: "Professional & Personal Skills",
+    titleAr: "المهارات الشخصية والعملية",
+    skills: [
+      { name: "Fast & Touch Typing", nameAr: "كتابة سريعة على كيبورد", level: 95 },
+      { name: "Communication & Problem Solving", nameAr: "القدرة على التواصل وحل المشكلات", level: 90 },
+      { name: "Working Under Pressure", nameAr: "العمل تحت ضغوطات", level: 92 },
+      { name: "Data Analysis & Organized Entry", nameAr: "تحليل وإدخال البيانات بشكل منظم ومرتب", level: 94 },
+      { name: "Planning & Strategic Analysis", nameAr: "القدرة على التخطيط والتحليل", level: 90 }
+    ]
   }
 ];
 

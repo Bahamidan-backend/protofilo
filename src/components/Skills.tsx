@@ -71,7 +71,7 @@ export default function Skills({ lang }: SkillsProps) {
                     <div className={`flex justify-between items-center text-xs font-semibold ${isAr ? "flex-row-reverse" : "flex-row"}`}>
                       <span className="text-gray-300 text-[11px] sm:text-xs font-sans hover:text-white transition-colors flex items-center gap-1.5">
                         <BadgeCheck size={12} className="text-blue-500/80 inline" />
-                        {skill.name}
+                        {isAr && skill.nameAr ? skill.nameAr : skill.name}
                       </span>
                       <span className="text-gray-500 font-mono scale-90">{skill.level}%</span>
                     </div>

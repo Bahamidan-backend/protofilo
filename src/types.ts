@@ -20,6 +20,7 @@ export interface SkillCategory {
   titleAr: string;
   skills: {
     name: string;
+    nameAr?: string;
     level: number; // 1-5 scale or percentage
   }[];
 }
