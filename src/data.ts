@@ -170,6 +170,37 @@ export const projects: Project[] = [
       "تحسين أداء الاستعلامات المعقدة للفواتير وتوافر الغرف عن طريق الفهارس الذكية والإجراءات المخزنة (Stored Procedures).",
       "تصميم واجهة مستخدم مبسطة لموظفي الاستقبال تُسهل الحجز السريع وتلغي الحاجة للعمليات الورقية التقليدية."
     ]
+  },
+  {
+    id: "multivendor-booking",
+    title: "Multivendor Shop & Venue Verification & Rating Platform",
+    titleAr: "منصة تسجيل وتدقيق وتقييم المحلات والأماكن (متعدد الملاك)",
+    type: "Cross-Platform Full-Stack System",
+    typeAr: "منظومة متكاملة متعددة المنصات (موبايل وويب)",
+    role: "Lead Mobile & Backend Developer",
+    roleAr: "مطور تطبيقات متعددة المنصات ومطور الخلفية البرمجية",
+    description: "A robust multi-vendor reservation and review system built with Flutter and backed by ASP.NET Core Web API. Venue and shop owners register listings, admins verify and publish verified items via notification audits, making them active for customers to view and rate.",
+    descriptionAr: "منظومة متكاملة متعددة المنصات تم تطويرها باستخدام Flutter ولغة Dart مع خلفية برمجية آمنة ومبنية على ASP.NET Core Web API. تتيح للملاك تسجيل وإضافة محلاتهم، بينما يراجعها المشرف ويفعلها لتستقبل تقييمات العملاء.",
+    imagePath: "multivendor",
+    technologies: [
+      "Flutter",
+      "ASP.NET Core Web API",
+      "SQL Database",
+      "RESTful API",
+      "Database Design"
+    ],
+    achievements: [
+      "Designed a complete relational database schema (Untitled.png) with strict cascade rules, mapping the relationships between Admins, Owners, Shops, Categories, and Customer Reviews.",
+      "Developed an interactive Cross-Platform Owner Portal in Flutter where vendors can register their shops, specify available services, upload rich galleries, and request verification.",
+      "Built an Admin Control Center utilizing secure ASP.NET Core Web API endpoints to handle audit processes, notify of new registrations, and publish active shops.",
+      "Implemented a client-facing rating engine allowing customers to browse authorized shops, submit feedback, and view aggregate rating scores."
+    ],
+    achievementsAr: [
+      "تصميم نموذج علاقات هيكلي لقاعدة البيانات (Untitled.png) يربط بمرونة كاملة بين الإدارة (Admin)، الملاك (Owners)، المحلات (Shops)، الأقسام، والمراجعات.",
+      "تطوير بوابة المالك (Owner Portal) باستخدام Flutter لتمكين أصحاب المحلات من تسجيل بياناتها، وتحديد الخدمات والمرافق، ورفع معارض الصور بسهولة وسلاسة.",
+      "بناء لوحة تحكم الأدمن (Admin) مدعومة بـ ASP.NET Core Web API مجهزة بأدوات مراجعة وتدقيق وإشعارات ذكية لمراجعة الطلبات الجديدة وتفعيل المحلات.",
+      "تطوير محرك تقييم تفاعلي يتيح للعملاء تصفح المحلات المعتمدة والمفتوحة، وتقديم تقييماتهم الرقمية ومراجعاتهم المكتوبة ومشاهدة متوسط التقييمات."
+    ]
   }
   
   // =========================================================================
@@ -209,8 +240,8 @@ export const projects: Project[] = [
 export const educationProfile: Education = {
   degree: "Bachelor of Information Technology (IT)",
   degreeAr: "بكالوريوس في تكنولوجيا المعلومات (IT)",
-  university: "Hadramout University",
-  universityAr: "جامعة حضرموت - كلية الهندسة والبترول",
+  university: "Hadramout University - College of Computers and Information Technology",
+  universityAr: "جامعة حضرموت - كلية الحاسبات وتقنية المعلومات",
   period: "February 2022 - August 2026",
   periodAr: "فبراير 2022 - أغسطس 2026",
   gpa: "3.4 / 4.0",

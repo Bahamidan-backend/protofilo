@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, Github, Linkedin, Mail, ShieldAlert, Phone, Download } from "lucide-react";
 import { DeveloperProfile } from "../types";
+import { jsPDF } from "jspdf";
 
 interface HeroProps {
   lang: "ar" | "en";
@@ -41,78 +42,232 @@ export default function Hero({ lang, profile, portraitSrc }: HeroProps) {
     setIsDownloading(true);
 
     setTimeout(() => {
-      // Craft a robust, beautifully simple PDF structure containing portfolio details
-      const pdfText = `%PDF-1.4
-1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
-endobj
-2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
-endobj
-3 0 obj
-<< /Type /Page /Parent 2 0 R /Resources << /Font << /F1 4 0 R >> >> /MediaBox [0 0 595.275 841.889] /Contents 5 0 R >>
-endobj
-4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
-endobj
-5 0 obj
-<< /Length 520 >>
-stream
-BT
-/F1 18 Tf
-72 750 Td
-(MOHAMMED SALEM BAHUMAIDAN - RESUME) Tj
-0 -30 Td
-/F1 11 Tf
-(Software Engineer - Backend & Desktop Systems Manager) Tj
-0 -20 Td
-(Email: moammedsalembahamidan@gmail.com) Tj
-0 -15 Td
-(Phone: +967 775 439 414) Tj
-0 -20 Td
-(Education: Bachelor of Information Technology - Hadramout University) Tj
-0 -20 Td
-(GPA: 3.4 / 4.0 | Location: Al Mukalla, Yemen) Tj
-0 -25 Td
-(Core Technical Competencies:) Tj
-0 -15 Td
-(- Clean Architecture, OOP, Code Refactoring, Design Patterns) Tj
-0 -15 Td
-(- C#, .NET runtime, ASP.NET Core APIs, WPF, Desktop Shell) Tj
-0 -15 Td
-(- SQL Server (T-SQL, optimization), Entity Framework Core, PostgreSQL) Tj
-0 -15 Td
-(- Custom HWID PC protection licensing & encryption engines) Tj
-0 -30 Td
-(This is a verified resume generated directly from AI Studio.) Tj
-ET
-endstream
-endobj
-xref
-0 6
-0000000000 65535 f 
-0000000009 00000 n 
-0000000058 00000 n 
-0000000115 00000 n 
-0000000244 00000 n 
-0000000313 00000 n 
-trailer
-<< /Size 6 /Root 1 0 R >>
-startxref
-910
-%%EOF`;
+      try {
+        const doc = new jsPDF({
+          orientation: "portrait",
+          unit: "mm",
+          format: "a4"
+        });
 
-      const blob = new Blob([pdfText], { type: "application/pdf" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "Mohammed_Salem_Bahumaidan_Resume.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
+        const margin = 20;
+        let y = 20;
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const contentWidth = pageWidth - (margin * 2);
 
+        const addSeparator = () => {
+          doc.setDrawColor(210, 214, 219);
+          doc.setLineWidth(0.4);
+          doc.line(margin, y, margin + contentWidth, y);
+          y += 8;
+        };
+
+        const addSectionTitle = (title: string) => {
+          doc.setFont("Helvetica", "bold");
+          doc.setFontSize(13);
+          doc.setTextColor(24, 28, 32);
+          doc.text(title, margin, y);
+          y += 5;
+        };
+
+        // Header Page 1
+        doc.setFont("Helvetica", "bold");
+        doc.setFontSize(22);
+        doc.setTextColor(15, 23, 42); // slate-900
+        doc.text("MOHAMMED SALEM BAHUMAIDAN", pageWidth / 2, y, { align: "center" });
+        y += 6;
+
+        doc.setFont("Helvetica", "normal");
+        doc.setFontSize(10.5);
+        doc.setTextColor(71, 85, 105); // slate-600
+        doc.text("IT Specialist & Systems Developer", pageWidth / 2, y, { align: "center" });
+        y += 7;
+
+        doc.setFontSize(8.5);
+        doc.setTextColor(100, 116, 139);
+        const contactStr = "Email: mohamedsalem230009@gmail.com   |   Location: Riyadh";
+        doc.text(contactStr, pageWidth / 2, y, { align: "center" });
+        y += 4.5;
+
+        const linksStr = "LinkedIn: linkedin.com/in/mohammed-bahamaydan   |   GitHub: github.com/Bahamidan-backend";
+        doc.text(linksStr, pageWidth / 2, y, { align: "center" });
+        y += 10;
+
+        // Professional Summary
+        addSectionTitle("PROFESSIONAL SUMMARY");
+        addSeparator();
+        doc.setFont("Helvetica", "normal");
+        doc.setFontSize(9.5);
+        doc.setTextColor(51, 65, 85);
+        const summaryText = "Result-oriented Information Technology graduate and Systems Developer with a solid foundation in deploying, maintaining, and developing enterprise-level business applications. Proven expertise in full-lifecycle ERP and POS system architecture, database management (SQL Server, PostgreSQL, SQLite), and technical troubleshooting. Adept at analyzing business workflows, optimizing data integrity, and providing technical support to align software functionality with operational demands.";
+        const splitSummary = doc.splitTextToSize(summaryText, contentWidth);
+        doc.text(splitSummary, margin, y);
+        y += (splitSummary.length * 4.5) + 8;
+
+        // Education
+        addSectionTitle("EDUCATION");
+        addSeparator();
+        
+        doc.setFont("Helvetica", "bold");
+        doc.setFontSize(10.5);
+        doc.setTextColor(15, 23, 42);
+        doc.text("Bachelor of Science in Information Technology", margin, y);
+        y += 4.5;
+
+        doc.setFont("Helvetica", "normal");
+        doc.setFontSize(9.5);
+        doc.setTextColor(71, 85, 105);
+        doc.text("Hadhramout University — Mukalla, Yemen", margin, y);
+        y += 4.5;
+
+        doc.setFont("Helvetica", "italic");
+        doc.text("GPA: 3.4 / 4.0   |   02/2022 - 08/2026", margin, y);
+        y += 5.5;
+
+        doc.setFont("Helvetica", "normal");
+        doc.setTextColor(51, 65, 85);
+        const coursework = "Relevant Coursework: Software Engineering, Database Management Systems (DBMS), Object-Oriented Programming (OOP), Data Structures & Algorithms, Clean Architecture, Onion Architecture Patterns.";
+        const splitCoursework = doc.splitTextToSize(coursework, contentWidth);
+        doc.text(splitCoursework, margin, y);
+        y += (splitCoursework.length * 4.5) + 8;
+
+        // Professional Experience
+        addSectionTitle("PROFESSIONAL EXPERIENCE");
+        addSeparator();
+
+        doc.setFont("Helvetica", "bold");
+        doc.setFontSize(10.5);
+        doc.setTextColor(15, 23, 42);
+        doc.text("Lead Full-Stack & Systems Developer (Contract / Freelance)", margin, y);
+        y += 4.5;
+
+        doc.setFont("Helvetica", "normal");
+        doc.setFontSize(9.5);
+        doc.setTextColor(71, 85, 105);
+        doc.text("NexCash POS & ERP Project   |   June 2025 - May 2026", margin, y);
+        y += 5.5;
+
+        const bullets1 = [
+          "Managed a 3-member technical team through the entire Software Development Lifecycle (SDLC) to successfully deliver an integrated corporate POS and ERP system.",
+          "Designed and optimized relational database schemas, ensuring transactional integrity for 10,000+ daily entries and accelerating live queries by 30%.",
+          "Engineered an automated inventory module that dynamically deducts warehouse stock levels based on real-time kitchen recipe components, preventing manual inventory gaps.",
+          "Created 40+ responsive user interfaces using WPF, streamlining corporate workflows and decreasing data entry errors by 25%.",
+          "Directed version control and team collaboration workflows utilizing Git and GitHub, ensuring stable production deployment."
+        ];
+
+        doc.setFont("Helvetica", "normal");
+        doc.setTextColor(51, 65, 85);
+        bullets1.forEach((bullet) => {
+          const splitBullet = doc.splitTextToSize("• " + bullet, contentWidth - 4);
+          doc.text(splitBullet, margin + 4, y);
+          y += (splitBullet.length * 4.5) + 1.2;
+        });
+
+        // ADD PAGE 2
+        doc.addPage();
+        y = 20;
+
+        // Projects
+        addSectionTitle("PROJECTS");
+        addSeparator();
+
+        doc.setFont("Helvetica", "bold");
+        doc.setFontSize(10.5);
+        doc.setTextColor(15, 23, 42);
+        doc.text("Point of Sale (POS) & Inventory System | NexCash", margin, y);
+        y += 4.5;
+
+        doc.setFont("Helvetica", "italic");
+        doc.setFontSize(9.5);
+        doc.setTextColor(71, 85, 105);
+        doc.text("Technologies: C#, WPF, SQLite, MVVM Clean Architecture", margin, y);
+        y += 5.5;
+
+        const nexcashBullets = [
+          "Programmed a comprehensive desktop POS and inventory platform tailored for fast-paced commercial and restaurant environments.",
+          "Developed a highly secure backend to manage automated billing, product logging, and live multi-branch inventory tracking."
+        ];
+
+        doc.setFont("Helvetica", "normal");
+        doc.setTextColor(51, 65, 85);
+        nexcashBullets.forEach((bullet) => {
+          const splitBullet = doc.splitTextToSize("• " + bullet, contentWidth - 4);
+          doc.text(splitBullet, margin + 4, y);
+          y += (splitBullet.length * 4.5) + 1.2;
+        });
+        y += 4.5;
+
+        doc.setFont("Helvetica", "bold");
+        doc.setFontSize(10.5);
+        doc.setTextColor(15, 23, 42);
+        doc.text("Hotel Management System", margin, y);
+        y += 4.5;
+
+        doc.setFont("Helvetica", "italic");
+        doc.setFontSize(9.5);
+        doc.setTextColor(71, 85, 105);
+        doc.text("Technologies: C#, Windows Forms, Microsoft SQL Server", margin, y);
+        y += 5.5;
+
+        const hotelBullets = [
+          "Implemented a robust administrative system for managing guest records, reservation cycles, and billing workflows.",
+          "Configured and optimized a central SQL Server database to handle simultaneous room availability updates and reports securely."
+        ];
+
+        hotelBullets.forEach((bullet) => {
+          const splitBullet = doc.splitTextToSize("• " + bullet, contentWidth - 4);
+          doc.text(splitBullet, margin + 4, y);
+          y += (splitBullet.length * 4.5) + 1.2;
+        });
+        y += 8;
+
+        // Technical Skills
+        addSectionTitle("TECHNICAL SKILLS");
+        addSeparator();
+
+        const skillsData = [
+          { label: "Systems & Database Administration", value: "Microsoft SQL Server, PostgreSQL, SQLite, Database Design, Data Integration, Inventory Systems Deployment." },
+          { label: "Core Development & Backend", value: "C#, ASP.NET Core, Entity Framework Core, RESTful APIs, LINQ, JSON, Docker Development." },
+          { label: "Frontend & Applications", value: "WPF (MVVM), Windows Forms, HTML5, CSS3, Bootstrap, Flutter/Dart Basics." },
+          { label: "Tools & DevOps", value: "Git, GitHub, Visual Studio, Postman, CI/CD Basics." },
+          { label: "IT Competencies & Soft Skills", value: "Technical Troubleshooting, Problem-Solving, Business Workflow Automation, Critical Thinking, Team Collaboration." }
+        ];
+
+        skillsData.forEach((skill) => {
+          doc.setFont("Helvetica", "bold");
+          doc.setFontSize(9.5);
+          doc.setTextColor(15, 23, 42);
+          
+          const labelFull = skill.label + ": ";
+          doc.text(labelFull, margin, y);
+          
+          const labelWidth = doc.getTextWidth(labelFull);
+          doc.setFont("Helvetica", "normal");
+          doc.setTextColor(51, 65, 85);
+          
+          const remainingWidth = contentWidth - labelWidth;
+          const splitVal = doc.splitTextToSize(skill.value, remainingWidth);
+          
+          if (splitVal.length === 1) {
+            doc.text(skill.value, margin + labelWidth, y);
+            y += 5.5;
+          } else {
+            const fitText = doc.splitTextToSize(skill.value, remainingWidth)[0];
+            doc.text(fitText, margin + labelWidth, y);
+            y += 4.5;
+            
+            const remainingText = skill.value.substring(fitText.length).trim();
+            const splitRemaining = doc.splitTextToSize(remainingText, contentWidth);
+            doc.text(splitRemaining, margin, y);
+            y += (splitRemaining.length * 4.5) + 2.5;
+          }
+        });
+
+        doc.save("Mohammed_Salem_Bahumaidan_CV.pdf");
+      } catch (err) {
+        console.error("PDF generation failed:", err);
+      }
       setIsDownloading(false);
-    }, 1500);
+    }, 1200);
   };
 
   return (

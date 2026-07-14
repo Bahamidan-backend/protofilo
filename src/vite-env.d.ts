@@ -5,6 +5,11 @@ declare module "*.png" {
   return value;
 }
 
+declare module "*.PNG" {
+  const value: string;
+  return value;
+}
+
 declare module "*.jpg" {
   const value: string;
   return value;

@@ -44,10 +44,46 @@ import imgHotelAnalytics from "../assets/images/SharedScreenshot2.jpg";
 import imgHotelOperations from "../assets/images/SharedScreenshot3.jpg";
 import imgHotelAbout from "../assets/images/SharedScreenshotabout.jpg";
 
+// Multivendor Venue Booking System Images
+import imgUntitled from "../assets/Untitled.png";
+
+import imgAdminHome from "../assets/admin/homePage.PNG";
+import imgAdminHome2 from "../assets/admin/homePage_2.PNG";
+import imgAdminPlaces from "../assets/admin/placesMange.PNG";
+import imgAdminAddCategory from "../assets/admin/addCategory.PNG";
+import imgAdminAddCategory2 from "../assets/admin/addCategory_2.PNG";
+import imgAdminAllCategory from "../assets/admin/allCateogry.PNG";
+import imgAdminCategoryEdit1 from "../assets/admin/allCateogry_edit_1.PNG";
+import imgAdminCategoryEdit2 from "../assets/admin/allCateogry_edit_2.PNG";
+import imgAdminAllOrders from "../assets/admin/allOrders.PNG";
+import imgAdminAllUsers from "../assets/admin/allUsers.PNG";
+import imgAdminAllUsersEdit from "../assets/admin/allUsers_editInfo.PNG";
+import imgAdminDelPlace from "../assets/admin/delPlace.PNG";
+import imgAdminEditPlace1 from "../assets/admin/editPlace_1.PNG";
+import imgAdminEditPlace2 from "../assets/admin/editPlace_2.PNG";
+import imgAdminEditPlace3 from "../assets/admin/editPlace_3.PNG";
+import imgAdminEditPlace4 from "../assets/admin/editPlace_4.PNG";
+import imgAdminOrderInfo1 from "../assets/admin/OrderInfo_1.PNG";
+import imgAdminOrderInfo2 from "../assets/admin/OrderInfo_2.PNG";
+import imgAdminOrderInfo3 from "../assets/admin/OrderInfo_3.PNG";
+import imgAdminOrderInfoR from "../assets/admin/OrderInfo_r.PNG";
+
+import imgOwnerHome1 from "../assets/owner/homePage_1.PNG";
+import imgOwnerHome2 from "../assets/owner/homePage_2.PNG";
+import imgOwnerAllPlaces from "../assets/owner/AllPlaces.PNG";
+import imgOwnerAddNewPlace from "../assets/owner/addNewPlace.PNG";
+import imgOwnerAddNewPlace2 from "../assets/owner/addNewPlace_2.PNG";
+import imgOwnerAddNewPlace3 from "../assets/owner/addNewPlace_3.PNG";
+import imgOwnerAddNewPlace4 from "../assets/owner/addNewPlace_4.PNG";
+import imgOwnerPlaceDetails1 from "../assets/owner/placeDetails_1.PNG";
+import imgOwnerPlaceDetails2 from "../assets/owner/placeDetails_2.PNG";
+import imgOwnerPlaceReviews from "../assets/owner/placeDetails_allReviews.PNG";
+
 // Project static main image fallback (used for non-interactive views and other projects)
 const PROJECT_IMAGES: Record<string, string> = {
   nexcash: imgNexCashMain,
-  "hotel-management": imgHotelMain
+  "hotel-management": imgHotelMain,
+  "multivendor-booking": imgUntitled
 };
 
 // =========================================================================
@@ -313,7 +349,264 @@ function HotelManagementCarousel({ isAr }: HotelManagementCarouselProps) {
 }
 
 // =========================================================================
-// 3. MAIN PROJECTS SECTION CONTAINER COMPONENT
+// 3. MULTIVENDOR VENUE BOOKING HIGH-FIDELITY IMAGE CAROUSEL COMPONENT
+// =========================================================================
+interface MultivendorCarouselProps {
+  isAr: boolean;
+}
+
+function MultivendorCarousel({ isAr }: MultivendorCarouselProps) {
+  const [activeTab, setActiveTab] = useState<"architecture" | "admin" | "owner">("architecture");
+
+  // Define slides per tab
+  const architectureSlides = [
+    {
+      id: "schema",
+      title: isAr ? "تخطيط قاعدة البيانات الهيكلية" : "Relational Database Planning",
+      desc: isAr ? "مخطط علاقات قاعدة البيانات الكامل للمشروع (Untitled.png) يربط جداول الملاك والأدمن والمستخدمين والمرافق والطلبات والتقييمات مع فرض قيود الاتساق والسلامة المرجعية (Relational Integrity)." : "A detailed relational database entity diagram representing the core data design. It maps out Users, Venues, Categories, Orders, and Reviews with proper constraints to ensure high performance and data consistency.",
+      path: imgUntitled
+    }
+  ];
+
+  const adminSlides = [
+    {
+      id: "admin-home",
+      title: isAr ? "لوحة المراقبة والإحصائيات الرئيسية" : "Central Admin Dashboard",
+      desc: isAr ? "واجهة الإشراف الشاملة لمتابعة إجمالي الأرباح، أعداد الملاك الجدد، الأماكن المضافة، وتطور تسجيل المستخدمين بنقرة واحدة." : "A comprehensive monitoring hub for administrators to track platform performance, total revenue, vendor signups, active venue counts, and database status.",
+      path: imgAdminHome
+    },
+    {
+      id: "admin-home-2",
+      title: isAr ? "لوحة التحكم - الواجهة الإدارية البديلة" : "Admin Dashboard - Secondary View",
+      desc: isAr ? "واجهة الإدارة الإحصائية المتقدمة وتفاصيل التفاعل اليومي للمستخدمين وحسابات النسب المالية للمنصة." : "Secondary analytical system monitor highlighting customized administrative operations, customer engagement, and transaction flows.",
+      path: imgAdminHome2
+    },
+    {
+      id: "admin-places",
+      title: isAr ? "إدارة وتعديل الأماكن والمرافق" : "Venue Verification Control",
+      desc: isAr ? "لوحة تحكم إدارية تمكن المشرف من تعديل تفاصيل الأماكن أو مراجعتها أو حذفها للحفاظ على معايير الجودة في المنصة." : "A detailed property management portal allowing administrators to verify, edit, and moderate listed venues to ensure top platform standards.",
+      path: imgAdminPlaces
+    },
+    {
+      id: "admin-edit-place-process",
+      title: isAr ? "تفاصيل العقار وتحديث البيانات" : "Aesthetic Property Editing Portal",
+      desc: isAr ? "واجهة تعديل متقدمة تتيح للمشرفين تصحيح بيانات الأماكن وتنسيق المرافق وتجهيز السعر اليومي." : "A high-fidelity form for platform admins to modify venue names, descriptions, adjust prices, and organize custom specifications.",
+      path: imgAdminEditPlace1
+    },
+    {
+      id: "admin-categories",
+      title: isAr ? "إدارة وتصنيف أقسام الأماكن" : "Platform Taxonomy Settings",
+      desc: isAr ? "إضافة وحذف وتعديل الفئات والأقسام المتاحة للأماكن (مثل شاليهات، قاعات اجتماعات، استراحات) لتسهيل الفرز والبحث السلس." : "Custom category controls to define the site hierarchy, adding or restructuring categories such as lounges, convention halls, or private villas.",
+      path: imgAdminAllCategory
+    },
+    {
+      id: "admin-category-details",
+      title: isAr ? "تعديل بيانات التصنيف" : "Taxonomy Structure Customizer",
+      desc: isAr ? "واجهة مبسطة تمكن الإدارة من إعادة تسمية الأقسام وتصنيفاتها ورفع أيقونات معبرة لكل تصنيف بشكل منظم." : "Sleek editing layout allowing admins to easily rename categories, modify identifiers, and assign visual representation tags.",
+      path: imgAdminCategoryEdit1
+    },
+    {
+      id: "admin-orders",
+      title: isAr ? "جدول الحجوزات والفواتير" : "Comprehensive Platform Orders Ledger",
+      desc: isAr ? "سجل مركزي يسرد كافة عمليات الحجز مع توضيح حالات الدفع وتواريخ الوصول والمغادرة والعمولات المقتطعة للمنصة." : "A master ledger compiling booking transactions, deposit logs, checkout statuses, and platform-specific platform commission tracking.",
+      path: imgAdminAllOrders
+    },
+    {
+      id: "admin-order-detail",
+      title: isAr ? "تفاصيل الفاتورة وحساب التكلفة" : "Detailed Invoice & Billing Sheet",
+      desc: isAr ? "فاتورة مفصلة للغاية تعرض معلومات النزيل وتوزيع الأسعار وقيمة الضرائب والخدمات المضافة لضمان الشفافية المالية." : "Grand receipt detailing specific guest details, pricing breakdowns, additional services selected, and direct transaction balances.",
+      path: imgAdminOrderInfo1
+    },
+    {
+      id: "admin-users",
+      title: isAr ? "حوكمة حسابات الأعضاء والصلاحيات" : "User Directories & System Access Control",
+      desc: isAr ? "عرض شامل لأعضاء المنصة والتحكم في حالات الحسابات وتعديل كلمات المرور أو حجب الأعضاء المخالفين." : "Platform membership database allowing administrators to review profiles, update registration details, reset credentials, or suspend violations.",
+      path: imgAdminAllUsers
+    }
+  ];
+
+  const ownerSlides = [
+    {
+      id: "owner-home-1",
+      title: isAr ? "لوحة الملاك وتتبع الدخل التشغيلي" : "Vendor Operational Hub",
+      desc: isAr ? "لوحة إحصائية للملاك لتتبع الأرباح المحققة من الحجوزات، عدد الزيارات، ومعدل إشغال العقارات والتقييمات الأخيرة." : "Performance statistics overview tailored for registered property hosts, visualising booking occupancy, revenue, and active reviews.",
+      path: imgOwnerHome1
+    },
+    {
+      id: "owner-home-2",
+      title: isAr ? "لوحة الملاك الإحصائية المتقدمة" : "Advanced Vendor Financial Charts",
+      desc: isAr ? "شاشة إحصائية ثانوية تعرض نسب الأرباح المحققة وتوزيع الطلبات ومستويات رضا العملاء." : "Comprehensive vendor dashboard showing monthly checkout numbers, occupancy metrics, and historical performance charts.",
+      path: imgOwnerHome2
+    },
+    {
+      id: "owner-add-place-wizard",
+      title: isAr ? "معالج متعدد الخطوات لإدراج مكان جديد" : "Interactive Venue Registration Wizard",
+      desc: isAr ? "استمارة مريحة تضمن إدخال بيانات العقار خطوة بخطوة، تشمل كتابة الاسم والوصف وتحديد الموقع الدقيق على الخريطة." : "Step-by-step creation flow prompting property owners to input property details, draft copy summaries, and anchor location configurations.",
+      path: imgOwnerAddNewPlace
+    },
+    {
+      id: "owner-add-place-specifications",
+      title: isAr ? "تحديد المرافق والخدمات المتاحة" : "Amenities & Specification Settings",
+      desc: isAr ? "خطوة مخصصة لاختيار وتجهيز مرافق المكان (مسبح، إنترنت، تكييف، مجلس خارجي) ورفع معارض الصور الملونة بجودة فائقة." : "Dedicated stage within the wizard facilitating swift checklists of available venue amenities, features, and rich photo uploads.",
+      path: imgOwnerAddNewPlace2
+    },
+    {
+      id: "owner-all-places",
+      title: isAr ? "سجل العقارات والأماكن المضافة" : "My Venues Catalog",
+      desc: isAr ? "قائمة منظمة تستعرض جميع عقارات المالك مع مؤشر لحالتها التشغيلية (نشط، بانتظار الموافقة، معطل) لسهولة المراقبة." : "Catalog compiling all current property listings owned by the vendor, flagged with active statuses for clean day-to-day oversight.",
+      path: imgOwnerAllPlaces
+    },
+    {
+      id: "owner-place-details",
+      title: isAr ? "صفحة العقار ومعلومات التقييم" : "Detailed Property View & Reviews Control",
+      desc: isAr ? "عرض العقار بالتفصيل مع استعراض صور المعرض المحددة والمرافق وتسهيل تحديث الأسعار والمراجعات المستلمة." : "High-fidelity profile of specific listings, detailing the gallery image layout, active room configurations, and latest guest responses.",
+      path: imgOwnerPlaceDetails1
+    },
+    {
+      id: "owner-place-reviews",
+      title: isAr ? "مراجعات ونبض النزلاء" : "Consolidated Guest Experience Audit",
+      desc: isAr ? "سجل يجمع تعليقات النزلاء وتغذيتهم الراجعة ومعدل النجوم لكل حجز لتمكين المالك من تحسين جودة الضيافة باستمرار." : "Clean feedback feed aggregating historical customer ratings, reviews text, and rating stars to optimize vendor hospitalities.",
+      path: imgOwnerPlaceReviews
+    }
+  ];
+
+  // Map active tab to current slides array
+  const currentSlides = 
+    activeTab === "architecture" 
+      ? architectureSlides 
+      : activeTab === "admin" 
+        ? adminSlides 
+        : ownerSlides;
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Reset slide index when changing tabs
+  const handleTabChange = (tab: "architecture" | "admin" | "owner") => {
+    setActiveTab(tab);
+    setActiveIndex(0);
+  };
+
+  const prevSlide = () => {
+    setActiveIndex((prev) => (prev === 0 ? currentSlides.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setActiveIndex((prev) => (prev === currentSlides.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="relative flex flex-col w-full h-full bg-gray-950/40 border border-gray-900 rounded-2xl overflow-hidden p-3.5">
+      {/* Tab Selectors */}
+      <div className="grid grid-cols-3 gap-1 bg-gray-950/80 p-1 rounded-xl border border-gray-900 mb-3.5">
+        <button
+          onClick={() => handleTabChange("architecture")}
+          className={`flex flex-col sm:flex-row items-center justify-center gap-1.5 py-2 text-center text-[10px] sm:text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+            activeTab === "architecture"
+              ? "bg-blue-600/90 text-white shadow-lg border border-blue-500/30"
+              : "text-gray-400 hover:text-white hover:bg-gray-900"
+          }`}
+        >
+          <Layers size={13} className={activeTab === "architecture" ? "text-white" : "text-gray-400"} />
+          <span>{isAr ? "التخطيط" : "Architecture"}</span>
+        </button>
+        <button
+          onClick={() => handleTabChange("admin")}
+          className={`flex flex-col sm:flex-row items-center justify-center gap-1.5 py-2 text-center text-[10px] sm:text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+            activeTab === "admin"
+              ? "bg-blue-600/90 text-white shadow-lg border border-blue-500/30"
+              : "text-gray-400 hover:text-white hover:bg-gray-900"
+          }`}
+        >
+          <Activity size={13} className={activeTab === "admin" ? "text-white" : "text-gray-400"} />
+          <span>{isAr ? "قسم الأدمن" : "Admin Portal"}</span>
+        </button>
+        <button
+          onClick={() => handleTabChange("owner")}
+          className={`flex flex-col sm:flex-row items-center justify-center gap-1.5 py-2 text-center text-[10px] sm:text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+            activeTab === "owner"
+              ? "bg-blue-600/90 text-white shadow-lg border border-blue-500/30"
+              : "text-gray-400 hover:text-white hover:bg-gray-900"
+          }`}
+        >
+          <Building size={13} className={activeTab === "owner" ? "text-white" : "text-gray-400"} />
+          <span>{isAr ? "قسم الأونر" : "Owner Portal"}</span>
+        </button>
+      </div>
+
+      {/* Top Banner Indicator */}
+      <div className={`flex justify-between items-center px-1 pb-2.5 border-b border-gray-900/40 mb-3 ${isAr ? "flex-row-reverse" : "flex-row"}`}>
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider text-ellipsis overflow-hidden whitespace-nowrap max-w-[180px] sm:max-w-[240px]">
+            {currentSlides[activeIndex]?.title}
+          </span>
+        </div>
+        <span className="text-[10px] font-mono text-gray-500 font-bold shrink-0">
+          {activeIndex + 1} / {currentSlides.length}
+        </span>
+      </div>
+
+      {/* Main Image Viewport with Slide Transition */}
+      <div className="relative group/slide overflow-hidden rounded-xl border border-gray-900 bg-gray-950/90 my-auto flex items-center justify-center min-h-[180px] sm:min-h-[220px]">
+        <div className="absolute top-2.5 right-2.5 z-10 bg-gray-950/80 text-blue-400 border border-blue-500/20 px-2 py-0.5 text-[8px] font-mono uppercase rounded tracking-widest animate-pulse">
+          {activeTab === "architecture" ? (isAr ? "تخطيط العلاقات" : "SCHEMA DESIGN") : (isAr ? "شاشة بوابة حقيقية" : "REAL SYSTEM VIEW")}
+        </div>
+        
+        {/* Navigation Buttons (Render only if more than 1 slide) */}
+        {currentSlides.length > 1 && (
+          <button
+            onClick={prevSlide}
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 z-10 p-2 bg-gray-950/80 hover:bg-blue-600 hover:text-white text-gray-400 rounded-full transition-all opacity-0 group-hover/slide:opacity-100 cursor-pointer border border-gray-950"
+            title={isAr ? "صورة سابقة" : "Previous Image"}
+          >
+            <ChevronLeft size={15} />
+          </button>
+        )}
+
+        <img
+          src={currentSlides[activeIndex]?.path}
+          alt={currentSlides[activeIndex]?.title}
+          className="w-full h-auto max-h-[220px] sm:max-h-[300px] object-contain duration-500 scale-100 hover:scale-103 shadow-md border-0 mx-auto"
+          referrerPolicy="no-referrer"
+        />
+
+        {currentSlides.length > 1 && (
+          <button
+            onClick={nextSlide}
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 z-10 p-2 bg-gray-950/80 hover:bg-blue-600 hover:text-white text-gray-400 rounded-full transition-all opacity-0 group-hover/slide:opacity-100 cursor-pointer border border-gray-950"
+            title={isAr ? "صورة تالية" : "Next Image"}
+          >
+            <ChevronRight size={15} />
+          </button>
+        )}
+      </div>
+
+      {/* Description below slide */}
+      <div className={`mt-3.5 px-1 min-h-[46px] ${isAr ? "text-right" : "text-left"}`}>
+        <p className="text-[11px] text-gray-400 leading-normal font-sans">
+          {currentSlides[activeIndex]?.desc}
+        </p>
+      </div>
+
+      {/* Slide Navigation Pagination Dots */}
+      {currentSlides.length > 1 && (
+        <div className="flex justify-center flex-wrap gap-1.5 pt-3 border-t border-gray-900/30 mt-3">
+          {currentSlides.map((slide, idx) => (
+            <button
+              key={slide.id}
+              onClick={() => setActiveIndex(idx)}
+              className={`h-1 rounded-full transition-all duration-300 ${activeIndex === idx ? "w-5 bg-blue-500" : "w-1 bg-gray-800 hover:bg-gray-700"}`}
+              title={slide.title}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// =========================================================================
+// 4. MAIN PROJECTS SECTION CONTAINER COMPONENT
 // =========================================================================
 interface ProjectsProps {
   lang: "ar" | "en";
@@ -325,7 +618,8 @@ export default function Projects({ lang }: ProjectsProps) {
   // Track expanded cards
   const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({
     nexcash: true, // Default open NexCash
-    hotel: false
+    hotel: false,
+    "multivendor-booking": false
   });
 
   const toggleCard = (id: string) => {
@@ -386,6 +680,8 @@ export default function Projects({ lang }: ProjectsProps) {
                         <NexCashCarousel isAr={isAr} />
                       ) : proj.id === "hotel-management" ? (
                         <HotelManagementCarousel isAr={isAr} />
+                      ) : proj.id === "multivendor-booking" ? (
+                        <MultivendorCarousel isAr={isAr} />
                       ) : (
                         <div className="relative group overflow-hidden rounded-xl border border-gray-800">
                           <img
@@ -412,11 +708,11 @@ export default function Projects({ lang }: ProjectsProps) {
                           {isAr ? proj.typeAr : proj.type}
                         </span>
                         <span className="px-3 py-1 bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xxs font-mono tracking-wider uppercase rounded-full">
-                          {isAr ? "سطح مكتب" : "Windows Desktop"}
+                          {proj.id === "multivendor-booking" ? (isAr ? "متعدد المنصات" : "Cross-Platform") : (isAr ? "سطح مكتب" : "Windows Desktop")}
                         </span>
-                        {(proj.id === "nexcash" || proj.id === "hotel-management") && (
+                        {(proj.id === "nexcash" || proj.id === "hotel-management" || proj.id === "multivendor-booking") && (
                           <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-mono tracking-wider font-bold rounded-full">
-                            {isAr ? "نظام سطح مكتب حقيقي" : "REAL WINDOWS SYSTEM"}
+                            {proj.id === "multivendor-booking" ? (isAr ? "منظومة متكاملة حقيقية" : "REAL FUNCTIONAL CROSS-PLATFORM SYSTEM") : (isAr ? "نظام سطح مكتب حقيقي" : "REAL WINDOWS SYSTEM")}
                           </span>
                         )}
                       </div>
